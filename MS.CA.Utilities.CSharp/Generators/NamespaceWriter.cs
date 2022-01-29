@@ -25,7 +25,10 @@ namespace MS.CA.Utilities.CSharp.Generators
                 return string.Empty;
             }
 
-            return _generatorWriter.GetIndentation() + "}\r\n";
+            var indentation = _generatorWriter.GetIndentation();
+            _generatorWriter.DecreaseIndentationLevel();
+
+            return indentation + "}\r\n";
         }
 
         protected override string GetStartText()
@@ -41,7 +44,9 @@ namespace MS.CA.Utilities.CSharp.Generators
                 return $"namespace {Symbol.ToDisplayString()};\r\n";
             }
 
-            return _generatorWriter.GetIndentation() + $"namespace {Symbol.ToDisplayString()}\r\n{{\r\n";
+            var indentation = _generatorWriter.GetIndentation();
+            _generatorWriter.IncreaseIndentationLevel();
+            return $"{indentation}namespace {Symbol.ToDisplayString()}\r\n{{\r\n";
         }
     }
 }
