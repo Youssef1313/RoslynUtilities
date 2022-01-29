@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition.Hosting;
-using System.Composition;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
@@ -9,13 +9,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Host;
-using Microsoft.CodeAnalysis.Host.Mef;
-using Microsoft.VisualStudio.Composition;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MS.CA.Utilities.Generators;
+using MS.CA.Utilities.Services;
 
 
 // ExportProviderFactory, MefV1HostServices, https://github.com/dotnet/roslyn/issues/34994
+// https://csharp.hotexamples.com/examples/System.ComponentModel.Composition.Hosting/CompositionContainer/GetExports/php-compositioncontainer-getexports-method-examples.html
 
 //var x = new Lazy<IExportProviderFactory>(
 //                () =>
@@ -31,35 +31,31 @@ using MS.CA.Utilities.Generators;
 
 //var exports = x.Value.CreateExportProvider().GetExports<IGeneratorWriter>();
 
-Console.WriteLine();
+//AggregateCatalog catalog = new AggregateCatalog();
+//catalog.Catalogs.Add(new AssemblyCatalog(typeof(IGeneratorWriter).Assembly));
+
+ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp);
+
 
 
 namespace MS.CA.Utilities.Generators
 {
-    public interface IGeneratorWriter
+    public interface IGeneratorWriter : ILanguageService
     {
-
     }
 
     [Export(typeof(IGeneratorWriter))]
-    public class GeneratorWriter : IGeneratorWriter
+    public sealed class GeneratorWriter : IGeneratorWriter
     {
-        private readonly GeneratorWriterOptions _options;
+        private readonly GeneratorWriterOptions _options = GeneratorWriterOptions.Default;
         private int _indentationLevel;
 
-        public GeneratorWriter(GeneratorWriterOptions options)
+        [ImportingConstructor]
+        public GeneratorWriter()
         {
-            _options = options;
         }
 
-        public GeneratorWriter(CSharpCompilation compilation)
-        {
-            _options = new GeneratorWriterOptions
-            {
-                UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersionEx.CSharp10,
-                UseTabsForIndentation = false,
-            };
-        }
+        public string LanguageName => LanguageNames.CSharp;
 
         private string GetIndentation()
         {
@@ -74,6 +70,8 @@ namespace MS.CA.Utilities.Generators
 
     public class GeneratorWriterOptions
     {
+        public static GeneratorWriterOptions Default { get; } = new();
+
         /// <summary>
         /// Determines whether <see cref="GeneratorWriter"/> will use file-scoped namespaces.
         /// The default is <see langword="false"/> (use block namespaces).
@@ -85,5 +83,14 @@ namespace MS.CA.Utilities.Generators
         /// The default is <see langword="false"/> (use spaces).
         /// </summary>
         public bool UseTabsForIndentation { get; init; }
+
+        public static GeneratorWriterOptions FromCompilation(CSharpCompilation compilation)
+        {
+            return new GeneratorWriterOptions
+            {
+                UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersionEx.CSharp10,
+                UseTabsForIndentation = false,
+            };
+        }
     }
 }
