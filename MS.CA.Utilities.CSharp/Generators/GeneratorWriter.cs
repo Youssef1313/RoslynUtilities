@@ -2,18 +2,9 @@
 using System.ComponentModel.Composition.Primitives;
 using Microsoft.CodeAnalysis;
 using MS.CA.Utilities.Generators;
-using MS.CA.Utilities.Services;
 
-
-ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp);
-
-namespace MS.CA.Utilities.Generators
+namespace MS.CA.Utilities.CSharp.Generators
 {
-    public interface IGeneratorWriter : ILanguageService
-    {
-        // WriteSymbolDeclaration, WriteString, ....
-    }
-
     [Export(typeof(IGeneratorWriter))]
     public sealed class GeneratorWriter : IGeneratorWriter
     {

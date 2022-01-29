@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp;
 
-namespace MS.CA.Utilities.Generators
+namespace MS.CA.Utilities.CSharp.Generators
 {
     internal class LanguageVersionEx
     {
