@@ -2,6 +2,6 @@
 {
     public interface ILanguageService
     {
-        public string LanguageName { get; }
+        string LanguageName { get; }
     }
 }

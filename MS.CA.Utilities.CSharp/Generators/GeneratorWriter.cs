@@ -10,7 +10,7 @@ namespace MS.CA.Utilities.CSharp.Generators
     [Export(typeof(IGeneratorWriter))]
     public sealed class GeneratorWriter : IGeneratorWriter
     {
-        private readonly GeneratorWriterOptions _options = GeneratorWriterOptions.Default;
+        private readonly CSharpGeneratorWriterOptions _options = CSharpGeneratorWriterOptions.Default;
         private int _indentationLevel;
         private readonly StringBuilder _builder = new();
 
@@ -21,7 +21,9 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         public string LanguageName => LanguageNames.CSharp;
 
-        public StringBuilder Builder => throw new System.NotImplementedException();
+        public StringBuilder Builder => _builder;
+
+        public GeneratorWriterOptions Options => _options;
 
         public string GetIndentation()
         {
