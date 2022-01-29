@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using Microsoft.CodeAnalysis;
 using MS.CA.Utilities.Services;
 
 namespace MS.CA.Utilities.Generators
@@ -14,5 +16,7 @@ namespace MS.CA.Utilities.Generators
         void DecreaseIndentationLevel();
 
         string GetIndentation();
+
+        IDisposable WriteSymbol(ISymbol symbol);
     }
 }

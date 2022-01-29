@@ -49,5 +49,14 @@ namespace MS.CA.Utilities.CSharp.Generators
 
             _indentationLevel--;
         }
+
+        public IDisposable WriteSymbol(ISymbol symbol)
+        {
+            return symbol switch
+            {
+                INamespaceSymbol namespaceSymbol => new NamespaceWriter(this, namespaceSymbol),
+                _ => throw new ArgumentException()
+            };
+        }
     }
 }
