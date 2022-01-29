@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Primitives;
+using System.Text;
 using Microsoft.CodeAnalysis;
 using MS.CA.Utilities.Generators;
 
@@ -10,6 +12,7 @@ namespace MS.CA.Utilities.CSharp.Generators
     {
         private readonly GeneratorWriterOptions _options = GeneratorWriterOptions.Default;
         private int _indentationLevel;
+        private readonly StringBuilder _builder = new();
 
         [ImportingConstructor]
         public GeneratorWriter()
@@ -18,7 +21,9 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         public string LanguageName => LanguageNames.CSharp;
 
-        private string GetIndentation()
+        public StringBuilder Builder => throw new System.NotImplementedException();
+
+        public string GetIndentation()
         {
             if (_options.UseTabsForIndentation)
             {
@@ -26,6 +31,21 @@ namespace MS.CA.Utilities.CSharp.Generators
             }
 
             return new string(' ', _indentationLevel * 4);
+        }
+
+        public void IncreaseIndentationLevel()
+        {
+            _indentationLevel++;
+        }
+
+        public void DecreaseIndentationLevel()
+        {
+            if (_indentationLevel == 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            _indentationLevel--;
         }
     }
 }

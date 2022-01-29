@@ -1,10 +1,11 @@
 ﻿using Microsoft.CodeAnalysis.CSharp;
+using MS.CA.Utilities.Generators;
 
 namespace MS.CA.Utilities.CSharp.Generators
 {
-    public class GeneratorWriterOptions
+    public class CSharpGeneratorWriterOptions : GeneratorWriterOptions
     {
-        public static GeneratorWriterOptions Default { get; } = new();
+        public static CSharpGeneratorWriterOptions Default { get; } = new();
 
         /// <summary>
         /// Determines whether <see cref="GeneratorWriter"/> will use file-scoped namespaces.
@@ -18,9 +19,9 @@ namespace MS.CA.Utilities.CSharp.Generators
         /// </summary>
         public bool UseTabsForIndentation { get; init; }
 
-        public static GeneratorWriterOptions FromCompilation(CSharpCompilation compilation)
+        public static CSharpGeneratorWriterOptions FromCompilation(CSharpCompilation compilation)
         {
-            return new GeneratorWriterOptions
+            return new CSharpGeneratorWriterOptions
             {
                 UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersionEx.CSharp10,
                 UseTabsForIndentation = false,

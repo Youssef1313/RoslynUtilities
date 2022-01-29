@@ -6,7 +6,7 @@ namespace MS.CA.Utilities.Services
 {
     public static class ServiceProvider
     {
-        private static CompositionContainer s_container;
+        private static readonly CompositionContainer s_container;
 
         static ServiceProvider()
         {
