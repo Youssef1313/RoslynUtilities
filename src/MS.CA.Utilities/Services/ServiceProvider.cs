@@ -8,7 +8,7 @@ namespace MS.CA.Utilities.Services
 {
     public static class ServiceProvider
     {
-        public static T GetLanguageService<T>(string languageName) where T : ILanguageService
+        public static T? GetLanguageService<T>(string languageName) where T : class, ILanguageService
         {
             var catalog = new AggregateCatalog();
 
@@ -28,7 +28,7 @@ namespace MS.CA.Utilities.Services
 
             var container = new CompositionContainer(catalog);
             container.ComposeParts();
-            return container.GetExports<T>().FirstOrDefault(s => s.Value.LanguageName == languageName).Value;
+            return container.GetExports<T>().FirstOrDefault(s => s.Value.LanguageName == languageName)?.Value;
         }
     }
 }
