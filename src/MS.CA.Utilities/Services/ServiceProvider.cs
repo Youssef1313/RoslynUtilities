@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using System.Reflection;
 
 namespace MS.CA.Utilities.Services
 {
@@ -10,6 +11,15 @@ namespace MS.CA.Utilities.Services
         public static T GetLanguageService<T>(string languageName) where T : ILanguageService
         {
             var catalog = new AggregateCatalog();
+
+            try
+            {
+                var assembly = Assembly.Load("MS.CA.Utilities.CSharp");
+                catalog.Catalogs.Add(new AssemblyCatalog(assembly));
+            }
+            catch (Exception)
+            {
+            }
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
