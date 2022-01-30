@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MS.CA.Utilities", "src\MS.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MS.CA.Utilities.CSharp", "src\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj", "{F10DE6EB-2F6F-40EA-8072-2FBE7976547B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MS.CA.Utilities.Package", "src\MS.CA.Utilities.Package\MS.CA.Utilities.Package.csproj", "{6314D984-3396-4ADF-8DB6-F76092755AAC}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MS.CA.Utilities.Tests", "tests\MS.CA.Utilities.Tests\MS.CA.Utilities.Tests.csproj", "{7224163B-2CDE-47E4-8984-1BC81AC3D334}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26D569B1-12ED-448A-B2AE-A26D55A7F076}"
@@ -37,6 +39,10 @@ Global
 		{7224163B-2CDE-47E4-8984-1BC81AC3D334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7224163B-2CDE-47E4-8984-1BC81AC3D334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7224163B-2CDE-47E4-8984-1BC81AC3D334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6314D984-3396-4ADF-8DB6-F76092755AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6314D984-3396-4ADF-8DB6-F76092755AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6314D984-3396-4ADF-8DB6-F76092755AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6314D984-3396-4ADF-8DB6-F76092755AAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

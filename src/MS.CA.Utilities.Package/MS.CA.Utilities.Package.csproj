@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>MS.CA.Utilities</PackageId>
+    <Description>MS.CA.Utilities is a utility package for Roslyn APIs.</Description>
+    <AssemblyTitle>Roslyn Utilities</AssemblyTitle>
+    <Authors>Youssef1313</Authors>
+    <IsPackable>true</IsPackable>
+    <PackageTags>roslyn;csharp;sourcegenerators;vb;vbnet;codeanalysis</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" />
+    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

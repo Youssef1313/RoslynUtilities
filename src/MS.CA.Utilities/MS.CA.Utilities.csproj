@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>preview</LangVersion>
+
+    <!-- Workaround https://github.com/NuGet/Home/issues/5621 -->
+    <!-- This project isn't packed anyway. -->
+    <!-- TODO: Rename this project to MS.CA.Utilities.Core and remove this line -->
+    <PackageId>MS.CA.Utilities.Core</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
