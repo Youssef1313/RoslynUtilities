@@ -8,6 +8,15 @@ namespace MS.CA.Utilities.Tests
 {
     public class CSharpSymbolWriterTests
     {
+        private string NormalizeLineEndings(string input)
+        {
+            if (input.Contains("\n") && !input.Contains("\r\n"))
+            {
+                input = input.Replace("\n", "\r\n");
+            }
+            return input;
+
+        }
         private CSharpCompilation CreateCompilation(string source)
         {
             return CSharpCompilation.Create("MyAssembly", new[] { SyntaxFactory.ParseSyntaxTree(source) });
@@ -27,13 +36,13 @@ namespace MS.CA.Utilities.Tests
                 writer.WriteIndented("Custom line 2...\r\n");
             }
 
-            Assert.Equal(
+            Assert.Equal(NormalizeLineEndings(
 @"namespace A.B.C
 {
     Custom line 1...
     Custom line 2...
 }
-",
+"),
 writer.Builder.ToString());
         }
 
@@ -55,7 +64,7 @@ writer.Builder.ToString());
                 writer.WriteIndented("Test2\r\n");
             }
 
-            Assert.Equal(
+            Assert.Equal(NormalizeLineEndings(
 @"namespace A.B.C
 {
     namespace A.B.C
@@ -64,7 +73,7 @@ writer.Builder.ToString());
     }
     Test2
 }
-",
+"),
 writer.Builder.ToString());
         }
     }

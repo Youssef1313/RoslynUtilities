@@ -7,9 +7,7 @@ namespace MS.CA.Utilities.Services
 {
     public static class ServiceProvider
     {
-        private static readonly CompositionContainer s_container;
-
-        static ServiceProvider()
+        public static T GetLanguageService<T>(string languageName) where T : ILanguageService
         {
             var catalog = new AggregateCatalog();
 
@@ -18,13 +16,9 @@ namespace MS.CA.Utilities.Services
                 catalog.Catalogs.Add(new AssemblyCatalog(assembly));
             }
 
-            s_container = new CompositionContainer(catalog);
-            s_container.ComposeParts();
-        }
-
-        public static T GetLanguageService<T>(string languageName) where T : ILanguageService
-        {
-            return s_container.GetExports<T>().Single(s => s.Value.LanguageName == languageName).Value;
+            var container = new CompositionContainer(catalog);
+            container.ComposeParts();
+            return container.GetExports<T>().Single(s => s.Value.LanguageName == languageName).Value;
         }
     }
 }
