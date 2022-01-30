@@ -10,8 +10,19 @@ namespace MS.CA.Utilities.Generators
     /// <remarks>
     /// Each symbol writer will override <see cref="DisposableWriter.GetStartText"/> and
     /// <see cref="DisposableWriter.GetEndText"/>, and is responsible for manipulating
-    /// the indentation if necessary. The returned start/end text should use the existing indentation
-    /// level, meaning that manipulating indentation happens after start/end text is already calculated.
+    /// the indentation if necessary. The returned start text should use the existing indentation
+    /// level, meaning that manipulating indentation happens after start text is already calculated.
+    /// For end text, indentation manipulation should happen first. For example,
+    /// <code>
+    /// [write_start]
+    /// public class C
+    /// {
+    /// [indent]
+    ///     // Code inside
+    /// [deindent]
+    /// [write_end]
+    /// }
+    /// </code>
     /// </remarks>
     internal abstract class SymbolWriter<T> : DisposableWriter where T : ISymbol
     {

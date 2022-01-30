@@ -18,5 +18,7 @@ namespace MS.CA.Utilities.Generators
         string GetIndentation();
 
         IDisposable WriteSymbol(ISymbol symbol);
+
+        void WriteIndented(string text);
     }
 }

@@ -25,8 +25,9 @@ namespace MS.CA.Utilities.CSharp.Generators
                 return string.Empty;
             }
 
-            var indentation = _generatorWriter.GetIndentation();
             _generatorWriter.DecreaseIndentationLevel();
+
+            var indentation = _generatorWriter.GetIndentation();
 
             return indentation + "}\r\n";
         }
@@ -46,7 +47,7 @@ namespace MS.CA.Utilities.CSharp.Generators
 
             var indentation = _generatorWriter.GetIndentation();
             _generatorWriter.IncreaseIndentationLevel();
-            return $"{indentation}namespace {Symbol.ToDisplayString()}\r\n{{\r\n";
+            return $"{indentation}namespace {Symbol.ToDisplayString()}\r\n{indentation}{{\r\n";
         }
     }
 }

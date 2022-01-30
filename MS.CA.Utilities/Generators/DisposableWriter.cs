@@ -10,12 +10,17 @@ namespace MS.CA.Utilities.Generators
         public DisposableWriter(IGeneratorWriter generatorWriter)
         {
             _builder = generatorWriter.Builder;
-            _builder.AppendLine(GetStartText());
+        }
+
+        public IDisposable WriteBegin()
+        {
+            _builder.Append(GetStartText());
+            return this;
         }
 
         public void Dispose()
         {
-            _builder.AppendLine(GetEndText());
+            _builder.Append(GetEndText());
         }
 
         protected abstract string GetStartText();

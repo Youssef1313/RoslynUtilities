@@ -54,9 +54,15 @@ namespace MS.CA.Utilities.CSharp.Generators
         {
             return symbol switch
             {
-                INamespaceSymbol namespaceSymbol => new NamespaceWriter(this, namespaceSymbol),
+                INamespaceSymbol namespaceSymbol => new NamespaceWriter(this, namespaceSymbol).WriteBegin(),
                 _ => throw new ArgumentException()
             };
+        }
+
+        public void WriteIndented(string text)
+        {
+            _builder.Append(GetIndentation());
+            _builder.Append(text);
         }
     }
 }
