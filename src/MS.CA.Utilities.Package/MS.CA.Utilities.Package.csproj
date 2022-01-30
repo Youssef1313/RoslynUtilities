@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <PackageId>MSCA.Utilities</PackageId>
-    <PackageVersion>1.0.0-alpha</PackageVersion>
+    <PackageVersion>1.0.0-alpha-2</PackageVersion>
     <Description>MS.CA.Utilities is a utility package for Roslyn APIs.</Description>
     <AssemblyTitle>Roslyn Utilities</AssemblyTitle>
     <Authors>Youssef1313</Authors>
