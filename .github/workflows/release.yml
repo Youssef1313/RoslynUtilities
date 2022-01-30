@@ -1,0 +1,21 @@
+name: Release RoslynUtilities
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.100
+    - name: Pack
+      run: dotnet pack --configuration Release
+    - name: Publish
+      run: dotnet nuget push ./artifacts/**/Release/**/*.nupkg --api-key ${{secrets.nuget_key}}
+
