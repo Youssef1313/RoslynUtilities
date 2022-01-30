@@ -29,7 +29,7 @@ namespace MS.CA.Utilities.Tests
             var type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             var @namespace = type.ContainingNamespace;
 
-            var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp);
+            var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp)!;
             using (writer.WriteSymbol(@namespace))
             {
                 writer.Builder.Append(writer.GetIndentation() + "Custom line 1...\r\n");
@@ -53,7 +53,7 @@ writer.Builder.ToString());
             var type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             var @namespace = type.ContainingNamespace;
 
-            var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp);
+            var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp)!;
             using (writer.WriteSymbol(@namespace))
             {
                 using (writer.WriteSymbol(@namespace))
