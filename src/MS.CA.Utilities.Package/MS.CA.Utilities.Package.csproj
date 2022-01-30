@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <PackageId>MSCA.Utilities</PackageId>
-    <PackageVersion>1.0.0-alpha-2</PackageVersion>
+    <PackageVersion>$(MSCAUtilitiesVersion)</PackageVersion>
     <Description>MS.CA.Utilities is a utility package for Roslyn APIs.</Description>
     <AssemblyTitle>Roslyn Utilities</AssemblyTitle>
     <Authors>Youssef1313</Authors>
@@ -16,8 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" PrivateAssets="all" />
-    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.Core.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" />
+    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.Core.csproj" />
   </ItemGroup>
 
 </Project>
