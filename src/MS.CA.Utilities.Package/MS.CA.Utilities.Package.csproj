@@ -16,8 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" />
-    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.Core.csproj" />
+    <ProjectReference Include="..\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.Core.csproj" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
