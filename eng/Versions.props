@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup>
-    <MSCAUtilitiesVersion>1.0.0-alpha-5</MSCAUtilitiesVersion>
+    <MSCAUtilitiesVersion>1.0.0-alpha-6</MSCAUtilitiesVersion>
     <MicrosoftCodeAnalysisVersion>3.3.1</MicrosoftCodeAnalysisVersion>
   </PropertyGroup>
 
