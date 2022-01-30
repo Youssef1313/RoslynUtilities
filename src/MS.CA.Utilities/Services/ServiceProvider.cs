@@ -28,7 +28,7 @@ namespace MS.CA.Utilities.Services
 
             var container = new CompositionContainer(catalog);
             container.ComposeParts();
-            return container.GetExports<T>().Single(s => s.Value.LanguageName == languageName).Value;
+            return container.GetExports<T>().FirstOrDefault(s => s.Value.LanguageName == languageName).Value;
         }
     }
 }
