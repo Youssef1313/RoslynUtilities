@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>MS.CA.Utilities</PackageId>
+    <PackageId>MSCA.Utilities</PackageId>
     <PackageVersion>1.0.0-alpha</PackageVersion>
     <Description>MS.CA.Utilities is a utility package for Roslyn APIs.</Description>
     <AssemblyTitle>Roslyn Utilities</AssemblyTitle>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" />
-    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.csproj" />
+    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.Core.csproj" />
   </ItemGroup>
 
 </Project>
