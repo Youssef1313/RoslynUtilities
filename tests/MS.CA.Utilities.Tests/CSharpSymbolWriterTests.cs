@@ -32,7 +32,7 @@ namespace MS.CA.Utilities.Tests
             var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp);
             using (writer.WriteSymbol(@namespace))
             {
-                writer.Builder.AppendLine(writer.GetIndentation() + "Custom line 1...");
+                writer.Builder.Append(writer.GetIndentation() + "Custom line 1...\r\n");
                 writer.WriteIndented("Custom line 2...\r\n");
             }
 
