@@ -1,7 +1,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using MS.CA.Utilities.CSharp.Generators;
 using MS.CA.Utilities.Generators;
-using MS.CA.Utilities.Services;
 using Xunit;
 
 namespace MS.CA.Utilities.Tests
@@ -14,13 +14,16 @@ namespace MS.CA.Utilities.Tests
             {
                 input = input.Replace("\n", "\r\n");
             }
-            return input;
 
+            return input;
         }
+
         private CSharpCompilation CreateCompilation(string source)
         {
             return CSharpCompilation.Create("MyAssembly", new[] { SyntaxFactory.ParseSyntaxTree(source) });
         }
+
+        private IGeneratorWriter CreateService() => new CSharpGeneratorWriter();
 
         [Fact]
         public void TestWriteNamespace()
@@ -29,7 +32,7 @@ namespace MS.CA.Utilities.Tests
             var type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             var @namespace = type.ContainingNamespace;
 
-            var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp)!;
+            var writer = CreateService();
             using (writer.WriteSymbol(@namespace))
             {
                 writer.Builder.Append(writer.GetIndentation() + "Custom line 1...\r\n");
@@ -53,7 +56,7 @@ writer.Builder.ToString());
             var type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             var @namespace = type.ContainingNamespace;
 
-            var writer = ServiceProvider.GetLanguageService<IGeneratorWriter>(LanguageNames.CSharp)!;
+            var writer = CreateService();
             using (writer.WriteSymbol(@namespace))
             {
                 using (writer.WriteSymbol(@namespace))

@@ -7,19 +7,21 @@ using MS.CA.Utilities.Generators;
 
 namespace MS.CA.Utilities.CSharp.Generators
 {
-    [Export(typeof(IGeneratorWriter))]
-    public sealed class GeneratorWriter : IGeneratorWriter
+    public sealed class CSharpGeneratorWriter : IGeneratorWriter
     {
-        private readonly CSharpGeneratorWriterOptions _options = CSharpGeneratorWriterOptions.Default;
+        private readonly CSharpGeneratorWriterOptions _options;
         private int _indentationLevel;
         private readonly StringBuilder _builder = new();
 
-        [ImportingConstructor]
-        public GeneratorWriter()
+        public CSharpGeneratorWriter()
         {
+            _options = CSharpGeneratorWriterOptions.Default;
         }
 
-        public string LanguageName => LanguageNames.CSharp;
+        public CSharpGeneratorWriter(CSharpGeneratorWriterOptions options)
+        {
+            _options = options;
+        }
 
         public StringBuilder Builder => _builder;
 
@@ -55,7 +57,7 @@ namespace MS.CA.Utilities.CSharp.Generators
             return symbol switch
             {
                 INamespaceSymbol namespaceSymbol => new NamespaceWriter(this, namespaceSymbol).WriteBegin(),
-                _ => throw new ArgumentException()
+                _ => throw new ArgumentException("Unexpected symbol type", nameof(symbol))
             };
         }
 
@@ -63,6 +65,11 @@ namespace MS.CA.Utilities.CSharp.Generators
         {
             _builder.Append(GetIndentation());
             _builder.Append(text);
+        }
+
+        public override string ToString()
+        {
+            return _builder.ToString();
         }
     }
 }
