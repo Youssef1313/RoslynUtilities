@@ -9,10 +9,12 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-All</AnalysisLevel>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="YAnalyzers" Version="1.2.0" />
+    <PackageVersion Include="YAnalyzers" Version="$(YAnalyzersVersion)" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(YAnalyzersVersion)" />
   </ItemGroup>
 
 </Project>

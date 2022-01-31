@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿using System;
+using Microsoft.CodeAnalysis.CSharp;
 using MS.CA.Utilities.Generators;
 
 namespace MS.CA.Utilities.CSharp.Generators
@@ -21,6 +22,11 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         public static CSharpGeneratorWriterOptions FromCompilation(CSharpCompilation compilation)
         {
+            if (compilation is null)
+            {
+                throw new ArgumentNullException(nameof(compilation));
+            }
+
             return new CSharpGeneratorWriterOptions
             {
                 UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersionEx.CSharp10,
