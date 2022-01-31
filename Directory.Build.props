@@ -4,7 +4,6 @@
   <Import Project="eng\Versions.props" />
 
   <PropertyGroup>
-    <AnalysisLevel>latest</AnalysisLevel>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
