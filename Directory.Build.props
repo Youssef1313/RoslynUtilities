@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageVersion Include="YAnalyzers" Version="$(YAnalyzersVersion)" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(YAnalyzersVersion)" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(MicrosoftCodeAnalysisNetAnalyzersVersion)" />
   </ItemGroup>
 
 </Project>
