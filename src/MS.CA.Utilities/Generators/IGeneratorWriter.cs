@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Text;
 using Microsoft.CodeAnalysis;
-using MS.CA.Utilities.Services;
 
 namespace MS.CA.Utilities.Generators
 {
-    public interface IGeneratorWriter : ILanguageService
+    public interface IGeneratorWriter
     {
         StringBuilder Builder { get; }
 
