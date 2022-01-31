@@ -1,4 +1,3 @@
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using MS.CA.Utilities.CSharp.Generators;
 using MS.CA.Utilities.Generators;
