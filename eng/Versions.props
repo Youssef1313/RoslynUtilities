@@ -3,6 +3,8 @@
   <PropertyGroup>
     <MSCAUtilitiesVersion>1.0.0-alpha-6</MSCAUtilitiesVersion>
     <MicrosoftCodeAnalysisVersion>3.3.1</MicrosoftCodeAnalysisVersion>
+    <MicrosoftCodeAnalysisNetAnalyzersVersion>6.0.0</MicrosoftCodeAnalysisNetAnalyzersVersion>
+    <YAnalyzersVersion>1.2.0</YAnalyzersVersion>
   </PropertyGroup>
 
 </Project>

@@ -13,6 +13,8 @@
     <Authors>Youssef1313</Authors>
     <IsPackable>true</IsPackable>
     <PackageTags>roslyn;csharp;sourcegenerators;vb;vbnet;codeanalysis</PackageTags>
+    <!-- CA1014: Mark assemblies with CLSCompliantAttribute -->
+    <NoWarn>$(NoWarn);CA1014</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

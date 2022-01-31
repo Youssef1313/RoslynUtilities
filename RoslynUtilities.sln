@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MS.CA.Utilities.Tests", "te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26D569B1-12ED-448A-B2AE-A26D55A7F076}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.globalconfig = .globalconfig
 		.github\workflows\build.yml = .github\workflows\build.yml
 		Directory.Build.props = Directory.Build.props
 		.github\workflows\release.yml = .github\workflows\release.yml

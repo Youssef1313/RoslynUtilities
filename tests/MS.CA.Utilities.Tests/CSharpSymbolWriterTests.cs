@@ -1,3 +1,4 @@
+﻿using System;
 using Microsoft.CodeAnalysis.CSharp;
 using MS.CA.Utilities.CSharp.Generators;
 using MS.CA.Utilities.Generators;
@@ -9,9 +10,9 @@ namespace MS.CA.Utilities.Tests
     {
         private static string NormalizeLineEndings(string input)
         {
-            if (input.Contains('\n') && !input.Contains("\r\n"))
+            if (input.Contains('\n', StringComparison.Ordinal) && !input.Contains("\r\n", StringComparison.Ordinal))
             {
-                input = input.Replace("\n", "\r\n");
+                input = input.Replace("\n", "\r\n", StringComparison.Ordinal);
             }
 
             return input;

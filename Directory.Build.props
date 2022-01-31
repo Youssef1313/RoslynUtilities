@@ -4,15 +4,17 @@
   <Import Project="eng\Versions.props" />
 
   <PropertyGroup>
-    <AnalysisLevel>latest</AnalysisLevel>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-All</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="YAnalyzers" Version="1.2.0" />
+    <PackageVersion Include="YAnalyzers" Version="$(YAnalyzersVersion)" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(MicrosoftCodeAnalysisNetAnalyzersVersion)" />
   </ItemGroup>
 
 </Project>
