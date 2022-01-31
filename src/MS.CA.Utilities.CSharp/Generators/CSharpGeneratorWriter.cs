@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Primitives;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using MS.CA.Utilities.Generators;

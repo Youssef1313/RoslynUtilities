@@ -7,9 +7,9 @@ namespace MS.CA.Utilities.Tests
 {
     public class CSharpSymbolWriterTests
     {
-        private string NormalizeLineEndings(string input)
+        private static string NormalizeLineEndings(string input)
         {
-            if (input.Contains("\n") && !input.Contains("\r\n"))
+            if (input.Contains('\n') && !input.Contains("\r\n"))
             {
                 input = input.Replace("\n", "\r\n");
             }
@@ -17,12 +17,12 @@ namespace MS.CA.Utilities.Tests
             return input;
         }
 
-        private CSharpCompilation CreateCompilation(string source)
+        private static CSharpCompilation CreateCompilation(string source)
         {
             return CSharpCompilation.Create("MyAssembly", new[] { SyntaxFactory.ParseSyntaxTree(source) });
         }
 
-        private IGeneratorWriter CreateService() => new CSharpGeneratorWriter();
+        private static IGeneratorWriter CreateService() => new CSharpGeneratorWriter();
 
         [Fact]
         public void TestWriteNamespace()
