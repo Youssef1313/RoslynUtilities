@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisVersion)" />
-    <ProjectReference Include="..\MS.CA.Utilities\MS.CA.Utilities.Core.csproj" />
+    <ProjectReference Include="..\MS.CA.Utilities.Core\MS.CA.Utilities.Core.csproj" />
   </ItemGroup>
 
 </Project>
