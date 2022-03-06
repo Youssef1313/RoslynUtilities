@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="YAnalyzers" Version="$(YAnalyzersVersion)" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(MicrosoftCodeAnalysisNetAnalyzersVersion)" />
+    <PackageReference Include="YAnalyzers" Version="$(YAnalyzersVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(MicrosoftCodeAnalysisNetAnalyzersVersion)" />
   </ItemGroup>
 
 </Project>

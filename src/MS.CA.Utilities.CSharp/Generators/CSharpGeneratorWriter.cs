@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using MS.CA.Utilities.Generators;
@@ -52,10 +53,21 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         public IDisposable WriteSymbol(ISymbol symbol)
         {
+            if (symbol is null)
+            {
+                throw new ArgumentNullException(nameof(symbol));
+            }
+
+            return GetSymbolWriter(this, symbol).WriteBegin();
+        }
+
+        internal static DisposableWriter GetSymbolWriter(IGeneratorWriter generatorWriter, ISymbol symbol)
+        {
             return symbol switch
             {
-                INamespaceSymbol namespaceSymbol => new NamespaceWriter(this, namespaceSymbol).WriteBegin(),
-                _ => throw new ArgumentException("Unexpected symbol type", nameof(symbol))
+                INamespaceSymbol namespaceSymbol => new NamespaceWriter(generatorWriter, namespaceSymbol),
+                INamedTypeSymbol namedTypeSymbol => new NamedTypeWriter(generatorWriter, namedTypeSymbol),
+                _ => throw new ArgumentException($"Unexpected symbol type '{symbol.Kind}'", nameof(symbol))
             };
         }
 

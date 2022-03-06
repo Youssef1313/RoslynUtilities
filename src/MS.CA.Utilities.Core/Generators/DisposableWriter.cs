@@ -7,7 +7,7 @@ namespace MS.CA.Utilities.Generators
     {
         private readonly StringBuilder _builder;
 
-        public DisposableWriter(IGeneratorWriter generatorWriter)
+        protected DisposableWriter(IGeneratorWriter generatorWriter)
         {
             _builder = generatorWriter.Builder;
         }
@@ -23,7 +23,7 @@ namespace MS.CA.Utilities.Generators
             _builder.Append(GetEndText());
         }
 
-        protected abstract string GetStartText();
-        protected abstract string GetEndText();
+        internal abstract string GetStartText();
+        internal abstract string GetEndText();
     }
 }

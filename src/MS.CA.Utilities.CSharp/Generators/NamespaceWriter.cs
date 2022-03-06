@@ -12,7 +12,7 @@ namespace MS.CA.Utilities.CSharp.Generators
             _generatorWriter = generatorWriter;
         }
 
-        protected override string GetEndText()
+        internal override string GetEndText()
         {
             if (Symbol.IsGlobalNamespace)
             {
@@ -27,12 +27,12 @@ namespace MS.CA.Utilities.CSharp.Generators
 
             _generatorWriter.DecreaseIndentationLevel();
 
-            var indentation = _generatorWriter.GetIndentation();
+            string indentation = _generatorWriter.GetIndentation();
 
             return indentation + "}\r\n";
         }
 
-        protected override string GetStartText()
+        internal override string GetStartText()
         {
             if (Symbol.IsGlobalNamespace)
             {
@@ -45,7 +45,7 @@ namespace MS.CA.Utilities.CSharp.Generators
                 return $"namespace {Symbol.ToDisplayString()};\r\n";
             }
 
-            var indentation = _generatorWriter.GetIndentation();
+            string indentation = _generatorWriter.GetIndentation();
             _generatorWriter.IncreaseIndentationLevel();
             return $"{indentation}namespace {Symbol.ToDisplayString()}\r\n{indentation}{{\r\n";
         }

@@ -28,7 +28,7 @@ namespace MS.CA.Utilities.Generators
     {
         public T Symbol { get; }
 
-        public SymbolWriter(IGeneratorWriter writer, T symbol) : base(writer)
+        protected SymbolWriter(IGeneratorWriter writer, T symbol) : base(writer)
         {
             Symbol = symbol;
         }
