@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using MS.CA.Utilities.CSharp.Generators;
 using MS.CA.Utilities.Generators;
@@ -28,11 +29,11 @@ namespace MS.CA.Utilities.Tests
         [Fact]
         public void TestWriteNamespace()
         {
-            var compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { } }");
-            var type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
-            var @namespace = type.ContainingNamespace;
+            Compilation compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { } }");
+            INamedTypeSymbol type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
+            INamespaceSymbol @namespace = type.ContainingNamespace;
 
-            var writer = CreateService();
+            IGeneratorWriter writer = CreateService();
             using (writer.WriteSymbol(@namespace))
             {
                 writer.Builder.Append(writer.GetIndentation() + "Custom line 1...\r\n");
@@ -52,11 +53,11 @@ writer.Builder.ToString());
         [Fact]
         public void TestWriteNestedNamespace()
         {
-            var compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { } }");
-            var type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
-            var @namespace = type.ContainingNamespace;
+            Compilation compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { } }");
+            INamedTypeSymbol type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
+            INamespaceSymbol @namespace = type.ContainingNamespace;
 
-            var writer = CreateService();
+            IGeneratorWriter writer = CreateService();
             using (writer.WriteSymbol(@namespace))
             {
                 using (writer.WriteSymbol(@namespace))
@@ -75,6 +76,33 @@ writer.Builder.ToString());
         Test1
     }
     Test2
+}
+"),
+writer.Builder.ToString());
+        }
+
+        [Fact]
+        public void TestWriteNamedType()
+        {
+            Compilation compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { public class MyClassNested { } } }");
+            INamedTypeSymbol type = compilation.GetTypeByMetadataName("A.B.C.MyClass+MyClassNested");
+
+            IGeneratorWriter writer = CreateService();
+            using (writer.WriteSymbol(type))
+            {
+                writer.WriteIndented("// Code goes here...\r\n");
+            }
+
+            Assert.Equal(NormalizeLineEndings(
+@"namespace A.B.C
+{
+    partial class MyClass
+    {
+        partial class MyClassNested
+        {
+            // Code goes here...
+        }
+    }
 }
 "),
 writer.Builder.ToString());
