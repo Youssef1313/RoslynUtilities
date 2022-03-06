@@ -34,7 +34,7 @@ namespace MS.CA.Utilities.Tests
             INamespaceSymbol @namespace = type.ContainingNamespace;
 
             IGeneratorWriter writer = CreateService();
-            using (writer.WriteSymbol(@namespace))
+            using (writer.WriteSymbol(@namespace, includeContainingSymbol: true))
             {
                 writer.Builder.Append(writer.GetIndentation() + "Custom line 1...\r\n");
                 writer.WriteIndented("Custom line 2...\r\n");
@@ -58,9 +58,9 @@ writer.Builder.ToString());
             INamespaceSymbol @namespace = type.ContainingNamespace;
 
             IGeneratorWriter writer = CreateService();
-            using (writer.WriteSymbol(@namespace))
+            using (writer.WriteSymbol(@namespace, includeContainingSymbol: true))
             {
-                using (writer.WriteSymbol(@namespace))
+                using (writer.WriteSymbol(@namespace, includeContainingSymbol: true))
                 {
                     writer.WriteIndented("Test1\r\n");
                 }
@@ -88,7 +88,7 @@ writer.Builder.ToString());
             INamedTypeSymbol type = compilation.GetTypeByMetadataName("A.B.C.MyClass+MyClassNested");
 
             IGeneratorWriter writer = CreateService();
-            using (writer.WriteSymbol(type))
+            using (writer.WriteSymbol(type, includeContainingSymbol: true))
             {
                 writer.WriteIndented("// Code goes here...\r\n");
             }
@@ -103,6 +103,27 @@ writer.Builder.ToString());
             // Code goes here...
         }
     }
+}
+"),
+writer.Builder.ToString());
+        }
+
+        [Fact]
+        public void TestNoContainingSymbol()
+        {
+            Compilation compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { public class MyClassNested { } } }");
+            INamedTypeSymbol type = compilation.GetTypeByMetadataName("A.B.C.MyClass+MyClassNested");
+
+            IGeneratorWriter writer = CreateService();
+            using (writer.WriteSymbol(type, includeContainingSymbol: false))
+            {
+                writer.WriteIndented("// Code goes here...\r\n");
+            }
+
+            Assert.Equal(NormalizeLineEndings(
+@"partial class MyClassNested
+{
+    // Code goes here...
 }
 "),
 writer.Builder.ToString());

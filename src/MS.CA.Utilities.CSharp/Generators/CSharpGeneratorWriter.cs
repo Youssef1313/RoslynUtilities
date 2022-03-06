@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using MS.CA.Utilities.Generators;
@@ -51,22 +50,74 @@ namespace MS.CA.Utilities.CSharp.Generators
             _indentationLevel--;
         }
 
-        public IDisposable WriteSymbol(ISymbol symbol)
+        /// <summary>
+        /// Gets a disposable symbol writer that can be used as:
+        /// <code>
+        /// using (generatorWriter.WriteSymbol(symbolToWrite, includeContainingSymbol)
+        /// {
+        ///     // Write something inside the symbol here.
+        /// }
+        /// </code>
+        /// </summary>
+        /// <param name="symbol">The symbol to write. Currently supporting <see cref="INamespaceSymbol"/>, <see cref="INamedTypeSymbol"/></param>
+        /// <param name="includeContainingSymbol">Whether to write the containing symbols.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="symbol"/> is null</exception>
+        /// <remarks>
+        /// Suppose you want to write code for class <c>C3</c> and also <c>C2</c> in
+        /// <code>
+        /// public class C1
+        /// {
+        ///     public class C2
+        ///     {
+        ///         public class C3
+        ///         {
+        ///         }
+        ///     }
+        /// }
+        /// </code>
+        /// Such that the generated code looks like this:
+        /// <code>
+        /// public class C1
+        /// {
+        ///     public class C2
+        ///     {
+        ///         // Code in C2
+        ///         public class C3
+        ///         {
+        ///             // Code in C3
+        ///         }
+        ///     }
+        /// }
+        /// </code>
+        /// What you'll do is:
+        /// <code>
+        /// using (generatorWriter.WriteSymbol(c2Symbol, includeContainingSymbol: true)
+        /// {
+        ///     generatorWriter.WriteIndented("// Code in C2");
+        ///     using (generatorWriter.WriteSymbol(c3, includeContainingSymbol: false)
+        ///     {
+        ///         generatorWriter.WriteIndented("// Code in C3");
+        ///     }
+        /// }
+        /// </code>
+        /// That's where <paramref name="includeContainingSymbol"/> can be useful.
+        /// </remarks>
+        public IDisposable WriteSymbol(ISymbol symbol, bool includeContainingSymbol)
         {
             if (symbol is null)
             {
                 throw new ArgumentNullException(nameof(symbol));
             }
 
-            return GetSymbolWriter(this, symbol).WriteBegin();
+            return GetSymbolWriter(this, symbol, includeContainingSymbol).WriteBegin();
         }
 
-        internal static DisposableWriter GetSymbolWriter(IGeneratorWriter generatorWriter, ISymbol symbol)
+        internal static DisposableWriter GetSymbolWriter(IGeneratorWriter generatorWriter, ISymbol symbol, bool includeContainingSymbol)
         {
             return symbol switch
             {
                 INamespaceSymbol namespaceSymbol => new NamespaceWriter(generatorWriter, namespaceSymbol),
-                INamedTypeSymbol namedTypeSymbol => new NamedTypeWriter(generatorWriter, namedTypeSymbol),
+                INamedTypeSymbol namedTypeSymbol => new NamedTypeWriter(generatorWriter, namedTypeSymbol, includeContainingSymbol),
                 _ => throw new ArgumentException($"Unexpected symbol type '{symbol.Kind}'", nameof(symbol))
             };
         }
