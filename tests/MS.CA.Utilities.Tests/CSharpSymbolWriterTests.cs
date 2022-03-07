@@ -128,5 +128,28 @@ writer.Builder.ToString());
 "),
 writer.Builder.ToString());
         }
+
+        [Fact]
+        public void TestWriteLinesIndented()
+        {
+            Compilation compilation = CreateCompilation(@"namespace A.B.C { public class MyClass { } }");
+            INamedTypeSymbol type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
+
+            IGeneratorWriter writer = CreateService();
+            using (writer.WriteSymbol(type, includeContainingSymbol: false))
+            {
+                writer.WriteLinesIndented(@"// Code goes here...
+// Second line goes here...");
+            }
+
+            Assert.Equal(NormalizeLineEndings(
+@"partial class MyClass
+{
+    // Code goes here...
+    // Second line goes here...
+}
+"),
+writer.Builder.ToString());
+        }
     }
 }

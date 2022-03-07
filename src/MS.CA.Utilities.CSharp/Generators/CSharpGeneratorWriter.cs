@@ -138,6 +138,7 @@ namespace MS.CA.Utilities.CSharp.Generators
             foreach (string line in lines)
             {
                 WriteIndented(line);
+                _builder.Append("\r\n");
             }
         }
 
