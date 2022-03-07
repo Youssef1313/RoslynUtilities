@@ -7,9 +7,11 @@ namespace MS.CA.Utilities.CSharp.Generators
 {
     public sealed class CSharpGeneratorWriter : IGeneratorWriter
     {
+        private static readonly string[] s_newLineSeparators = new[] { "\r\n", "\n" };
+
         private readonly CSharpGeneratorWriterOptions _options;
-        private int _indentationLevel;
         private readonly StringBuilder _builder = new();
+        private int _indentationLevel;
 
         public CSharpGeneratorWriter()
         {
@@ -126,6 +128,18 @@ namespace MS.CA.Utilities.CSharp.Generators
         {
             _builder.Append(GetIndentation());
             _builder.Append(text);
+        }
+
+        public void WriteLinesIndented(string text)
+        {
+            text ??= string.Empty;
+
+            string[] lines = text.Split(s_newLineSeparators, StringSplitOptions.None);
+            foreach (string line in lines)
+            {
+                WriteIndented(line);
+                _builder.Append("\r\n");
+            }
         }
 
         public override string ToString()
