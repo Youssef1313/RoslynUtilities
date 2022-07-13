@@ -29,7 +29,7 @@ namespace MS.CA.Utilities.CSharp.Generators
 
             return new CSharpGeneratorWriterOptions
             {
-                UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersionEx.CSharp10,
+                UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersion.CSharp10,
                 UseTabsForIndentation = false,
             };
         }
