@@ -32,9 +32,6 @@ namespace MS.CA.Utilities.CSharp.Generators
                 SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
                 SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
 
-        private const SyntaxKind RecordDeclaration = (SyntaxKind)9063;
-        private const SyntaxKind RecordStructDeclaration = (SyntaxKind)9068;
-
         public NamedTypeWriter(IGeneratorWriter generatorWriter, INamedTypeSymbol symbol, bool includeContainingSymbol) : base(generatorWriter, symbol)
         {
             _generatorWriter = generatorWriter;
@@ -85,8 +82,13 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         private static bool IsRecord(INamedTypeSymbol namedType)
         {
-            return namedType.DeclaringSyntaxReferences.FirstOrDefault() is { } syntaxReference &&
-                syntaxReference.GetSyntax().Kind() is RecordDeclaration or RecordStructDeclaration;
+            // TODO:
+            // #if V_3_9_OR_GREATER
+            //     return namedType.IsRecord;
+            // #else
+            //     return false;
+            // #end if
+            return namedType.IsRecord;
         }
     }
 }
