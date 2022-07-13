@@ -6,18 +6,27 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>MSCA.Utilities.Core</PackageId>
+    <PackageId>MSCA.Utilities</PackageId>
     <PackageVersion>$(MSCAUtilitiesVersion)</PackageVersion>
-    <Description>MS.CA.Utilities.Core is the core of MSCA.Utilities packages. Do not reference this package directly.</Description>
+
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>contentFiles</ContentTargetFolders>
+    <Description>MS.CA.Utilities is a utility package for Roslyn APIs.</Description>
     <AssemblyTitle>Roslyn Utilities</AssemblyTitle>
     <Authors>Youssef1313</Authors>
     <IsPackable>true</IsPackable>
     <PackageTags>roslyn;csharp;sourcegenerators;vb;vbnet;codeanalysis</PackageTags>
+
+    <!-- Remove once https://github.com/NuGet/Home/issues/8583 is fixed -->
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="$(MicrosoftCodeAnalysisVersion)" />
-    <InternalsVisibleTo Include="MS.CA.Utilities.CSharp" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisVersion)" />
+
+    <Content Include="**/*.cs"/>
+
   </ItemGroup>
 
 </Project>

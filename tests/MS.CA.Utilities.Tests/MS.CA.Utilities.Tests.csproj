@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MS.CA.Utilities.CSharp\MS.CA.Utilities.CSharp.csproj" />
+    <ProjectReference Include="..\..\src\MS.CA.Utilities\MS.CA.Utilities.csproj" />
   </ItemGroup>
 
 </Project>
