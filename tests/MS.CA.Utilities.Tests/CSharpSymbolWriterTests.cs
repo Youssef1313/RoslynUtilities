@@ -27,7 +27,11 @@ namespace MS.CA.Utilities.Tests
         private static async Task<CSharpCompilation> CreateCompilationAsync(string source)
         {
             ImmutableArray<MetadataReference> metadataReferences = await ReferenceAssemblies.Default.ResolveAsync(LanguageNames.CSharp, CancellationToken.None).ConfigureAwait(false);
-            return CSharpCompilation.Create("MyAssembly", new[] { SyntaxFactory.ParseSyntaxTree(source, options: new CSharpParseOptions().WithLanguageVersion(LanguageVersion.Preview)) }, references: metadataReferences);
+            return CSharpCompilation.Create(
+                assemblyName: "MyAssembly",
+                syntaxTrees: new[] { SyntaxFactory.ParseSyntaxTree(source, options: new CSharpParseOptions().WithLanguageVersion(LanguageVersion.Preview)) },
+                references: metadataReferences,
+                options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
         }
 
         private static IGeneratorWriter CreateService() => new CSharpGeneratorWriter();
