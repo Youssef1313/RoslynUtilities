@@ -24,7 +24,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisVersion)" PrivateAssets="all" />
 
-    <Content Include="**/*.cs" CodeLanguage="cs" BuildAction="compile"/>
+    <Content Include="**/*.cs" CodeLanguage="cs" BuildAction="compile" />
+    <None Include="build/**/*.*" Pack="true">
+      <PackagePath>build</PackagePath>
+    </None>
 
   </ItemGroup>
 

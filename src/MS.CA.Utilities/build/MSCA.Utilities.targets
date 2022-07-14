@@ -1,0 +1,17 @@
+﻿<Project>
+
+  <Target Name="GetCodeAnalysisAssemblyVersion" DependsOnTargets="ResolveReferences" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <MicrosoftCodeAnalysisAssemblyReference Include="@(ReferencePath)" Condition="$([System.String]::new('%(ReferencePath.FusionName)').StartsWith('Microsoft.CodeAnalysis.Common,'))" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <MicrosoftCodeAnalysisNuGetPackageVersion>%(MicrosoftCodeAnalysisAssemblyReference.NuGetPackageVersion)</MicrosoftCodeAnalysisNuGetPackageVersion>
+
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.3'))">$(DefineConstants);CODEANALYSIS_3_3_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.9'))">$(DefineConstants);CODEANALYSIS_3_9_OR_GREATER</DefineConstants>
+    </PropertyGroup>
+
+    <Message Text="$(DefineConstants)" Importance="high" />
+  </Target>
+</Project>
