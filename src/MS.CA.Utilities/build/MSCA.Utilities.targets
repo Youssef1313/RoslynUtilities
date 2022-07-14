@@ -11,7 +11,5 @@
       <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.3'))">$(DefineConstants);CODEANALYSIS_3_3_OR_GREATER</DefineConstants>
       <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.9'))">$(DefineConstants);CODEANALYSIS_3_9_OR_GREATER</DefineConstants>
     </PropertyGroup>
-
-    <Message Text="$(DefineConstants)" Importance="high" />
   </Target>
 </Project>

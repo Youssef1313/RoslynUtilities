@@ -31,4 +31,6 @@
 
   </ItemGroup>
 
+  <Import Project="build/MSCA.Utilities.targets" />
+
 </Project>

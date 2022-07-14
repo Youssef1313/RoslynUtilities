@@ -82,13 +82,12 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         private static bool IsRecord(INamedTypeSymbol namedType)
         {
-            // TODO:
-            // #if V_3_9_OR_GREATER
-            //     return namedType.IsRecord;
-            // #else
-            //     return false;
-            // #end if
+#if CODEANALYSIS_3_9_OR_GREATER
             return namedType.IsRecord;
+#else
+            // TODO: Fallback to reflection?
+            return false;
+#endif
         }
     }
 }

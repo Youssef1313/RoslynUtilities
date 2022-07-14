@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.CodeAnalysis.CSharp;
 using MS.CA.Utilities.Generators;
+using MS.CA.Utilities.Helpers;
 
 namespace MS.CA.Utilities.CSharp.Generators
 {
@@ -29,7 +30,7 @@ namespace MS.CA.Utilities.CSharp.Generators
 
             return new CSharpGeneratorWriterOptions
             {
-                UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersion.CSharp10,
+                UseFileScopedNamespaces = compilation.LanguageVersion >= LanguageVersionEx.CSharp10,
                 UseTabsForIndentation = false,
             };
         }
