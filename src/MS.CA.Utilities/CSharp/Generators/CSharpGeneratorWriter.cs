@@ -120,6 +120,7 @@ namespace MS.CA.Utilities.CSharp.Generators
             {
                 INamespaceSymbol namespaceSymbol => new NamespaceWriter(generatorWriter, namespaceSymbol),
                 INamedTypeSymbol namedTypeSymbol => new NamedTypeWriter(generatorWriter, namedTypeSymbol, includeContainingSymbol),
+                IMethodSymbol methodSymbol => new MethodWriter(generatorWriter, methodSymbol, includeContainingSymbol),
                 _ => throw new ArgumentException($"Unexpected symbol type '{symbol.Kind}'", nameof(symbol))
             };
         }
