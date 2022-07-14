@@ -2,7 +2,7 @@
 
   <Target Name="GetCodeAnalysisAssemblyVersion" DependsOnTargets="ResolveReferences" BeforeTargets="CoreCompile">
     <ItemGroup>
-      <MicrosoftCodeAnalysisAssemblyReference Include="@(ReferencePath)" Condition="$([System.String]::new('%(ReferencePath.FusionName)').StartsWith('Microsoft.CodeAnalysis.Common,'))" />
+      <MicrosoftCodeAnalysisAssemblyReference Include="@(ReferencePath)" Condition="$([System.String]::new('%(ReferencePath.FusionName)').StartsWith('Microsoft.CodeAnalysis,'))" />
     </ItemGroup>
 
     <PropertyGroup>
