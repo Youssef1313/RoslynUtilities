@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Testing;
 using MS.CA.Utilities.CSharp.Generators;
 using MS.CA.Utilities.Generators;
+using MS.CA.Utilities.Tests.Helpers;
 using Xunit;
 
 namespace MS.CA.Utilities.Tests
@@ -164,11 +165,15 @@ writer.Builder.ToString());
 
         [Theory]
         [InlineData("class")]
-        [InlineData("record")]
-        [InlineData("record class")]
         [InlineData("struct")]
-        [InlineData("record struct")]
         [InlineData("interface")]
+#if CODEANALYSIS_3_7_OR_GREATER
+        [InlineData("record")]
+#endif
+#if CODEANALYSIS_3_11_OR_GREATER
+        [InlineData("record class")]
+        [InlineData("record struct")]
+#endif
         public async Task TestGenericType(string type)
         {
             Compilation compilation = await CreateCompilationAsync($@"namespace A.B.C {{ public {type} MyType<T> {{ }} }}").ConfigureAwait(false);

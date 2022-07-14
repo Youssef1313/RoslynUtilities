@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MS.CA.Utilities.Tests
+namespace MS.CA.Utilities.Tests.Helpers
 {
     internal static class AssertEx
     {
