@@ -18,8 +18,8 @@ namespace MS.CA.Utilities.Generators
 
         IDisposable WriteSymbol(ISymbol symbol, bool includeContainingSymbol);
 
-        void WriteIndented(string text);
+        IGeneratorWriter WriteIndented(string text);
 
-        void WriteLinesIndented(string text);
+        IGeneratorWriter WriteLinesIndented(string text);
     }
 }

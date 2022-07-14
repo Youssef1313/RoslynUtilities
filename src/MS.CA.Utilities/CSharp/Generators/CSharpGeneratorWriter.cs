@@ -124,13 +124,14 @@ namespace MS.CA.Utilities.CSharp.Generators
             };
         }
 
-        public void WriteIndented(string text)
+        public IGeneratorWriter WriteIndented(string text)
         {
             _builder.Append(GetIndentation());
             _builder.Append(text);
+            return this;
         }
 
-        public void WriteLinesIndented(string text)
+        public IGeneratorWriter WriteLinesIndented(string text)
         {
             text ??= string.Empty;
 
@@ -140,6 +141,8 @@ namespace MS.CA.Utilities.CSharp.Generators
                 WriteIndented(line);
                 _builder.Append("\r\n");
             }
+
+            return this;
         }
 
         public override string ToString()
