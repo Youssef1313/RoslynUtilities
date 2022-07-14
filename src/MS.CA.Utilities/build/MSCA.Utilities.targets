@@ -9,9 +9,20 @@
       <MicrosoftCodeAnalysisNuGetPackageVersion>%(MicrosoftCodeAnalysisAssemblyReference.NuGetPackageVersion)</MicrosoftCodeAnalysisNuGetPackageVersion>
 
       <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.3'))">$(DefineConstants);CODEANALYSIS_3_3_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.4'))">$(DefineConstants);CODEANALYSIS_3_4_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.5'))">$(DefineConstants);CODEANALYSIS_3_5_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.6'))">$(DefineConstants);CODEANALYSIS_3_6_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.7'))">$(DefineConstants);CODEANALYSIS_3_7_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.8'))">$(DefineConstants);CODEANALYSIS_3_8_OR_GREATER</DefineConstants>
       <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.9'))">$(DefineConstants);CODEANALYSIS_3_9_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.10'))">$(DefineConstants);CODEANALYSIS_3_10_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'3.11'))">$(DefineConstants);CODEANALYSIS_3_11_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'4.0'))">$(DefineConstants);CODEANALYSIS_4_0_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'4.1'))">$(DefineConstants);CODEANALYSIS_4_1_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'4.2'))">$(DefineConstants);CODEANALYSIS_4_2_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'4.3'))">$(DefineConstants);CODEANALYSIS_4_3_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'4.4'))">$(DefineConstants);CODEANALYSIS_4_4_OR_GREATER</DefineConstants>
+      <DefineConstants Condition="$([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisNuGetPackageVersion),'4.5'))">$(DefineConstants);CODEANALYSIS_4_5_OR_GREATER</DefineConstants>
     </PropertyGroup>
-
-    <Message Text="$(DefineConstants)" Importance="high" />
   </Target>
 </Project>

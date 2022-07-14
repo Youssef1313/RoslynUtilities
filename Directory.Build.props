@@ -2,6 +2,7 @@
 <Project>
   <Import Project="eng\Settings.props" />
   <Import Project="eng\Versions.props" />
+  <Import Project="src\MS.CA.Utilities\build\MSCA.Utilities.targets" />
 
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
