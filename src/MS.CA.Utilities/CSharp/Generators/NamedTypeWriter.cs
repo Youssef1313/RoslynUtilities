@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+using MS.CA.Utilities.CSharp.Extensions;
 using MS.CA.Utilities.Generators;
 
 namespace MS.CA.Utilities.CSharp.Generators
@@ -82,11 +81,14 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         private static bool IsRecord(INamedTypeSymbol namedType)
         {
-#if CODEANALYSIS_3_9_OR_GREATER
+#if CODEANALYSIS_3_9_OR_GREATER && false
             return namedType.IsRecord;
 #else
-            // TODO: Fallback to reflection?
-            return false;
+            // TODO: Fallback to Lightup-based (reflection) IsRecord check?
+            // This will be done besides this check, not alone.
+            // This is because records were introduced in 3.7, but IsRecord API introduced in 3.9.
+            return (namedType.DeclaringSyntaxReferences.Length > 0 && namedType.DeclaringSyntaxReferences[0].GetSyntax().IsKind(SyntaxKindEx.RecordDeclaration, SyntaxKindEx.RecordStructDeclaration)) ||
+                !namedType.GetMembers("<Clone>$").IsEmpty;
 #endif
         }
     }
