@@ -36,6 +36,7 @@ namespace MS.CA.Utilities.Tests
         public async Task TestWriteNamespace()
         {
             Compilation compilation = await CreateCompilationAsync(@"namespace A.B.C { public class MyClass { } }").ConfigureAwait(false);
+            Assert.Empty(compilation.GetDiagnostics());
             INamedTypeSymbol? type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             AssertEx.NotNull(type);
             INamespaceSymbol @namespace = type.ContainingNamespace;
@@ -61,6 +62,7 @@ writer.Builder.ToString());
         public async Task TestWriteNestedNamespace()
         {
             Compilation compilation = await CreateCompilationAsync(@"namespace A.B.C { public class MyClass { } }").ConfigureAwait(false);
+            Assert.Empty(compilation.GetDiagnostics());
             INamedTypeSymbol? type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             AssertEx.NotNull(type);
             INamespaceSymbol @namespace = type.ContainingNamespace;
@@ -93,6 +95,7 @@ writer.Builder.ToString());
         public async Task TestWriteNamedType()
         {
             Compilation compilation = await CreateCompilationAsync(@"namespace A.B.C { public class MyClass { public class MyClassNested { } } }").ConfigureAwait(false);
+            Assert.Empty(compilation.GetDiagnostics());
             INamedTypeSymbol? type = compilation.GetTypeByMetadataName("A.B.C.MyClass+MyClassNested");
             AssertEx.NotNull(type);
 
@@ -121,6 +124,7 @@ writer.Builder.ToString());
         public async Task TestNoContainingSymbol()
         {
             Compilation compilation = await CreateCompilationAsync(@"namespace A.B.C { public class MyClass { public class MyClassNested { } } }").ConfigureAwait(false);
+            Assert.Empty(compilation.GetDiagnostics());
             INamedTypeSymbol? type = compilation.GetTypeByMetadataName("A.B.C.MyClass+MyClassNested");
             AssertEx.NotNull(type);
 
@@ -143,6 +147,7 @@ writer.Builder.ToString());
         public async Task TestWriteLinesIndented()
         {
             Compilation compilation = await CreateCompilationAsync(@"namespace A.B.C { public class MyClass { } }").ConfigureAwait(false);
+            Assert.Empty(compilation.GetDiagnostics());
             INamedTypeSymbol? type = compilation.GetTypeByMetadataName("A.B.C.MyClass");
             AssertEx.NotNull(type);
 
@@ -177,6 +182,7 @@ writer.Builder.ToString());
         public async Task TestGenericType(string type)
         {
             Compilation compilation = await CreateCompilationAsync($@"namespace A.B.C {{ public {type} MyType<T> {{ }} }}").ConfigureAwait(false);
+            Assert.Empty(compilation.GetDiagnostics());
             INamedTypeSymbol? typeSymbol = compilation.GetTypeByMetadataName("A.B.C.MyType`1");
             AssertEx.NotNull(typeSymbol);
 
