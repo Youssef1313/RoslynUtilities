@@ -138,10 +138,15 @@ namespace MS.CA.Utilities.CSharp.Generators
             string[] lines = text.Split(s_newLineSeparators, StringSplitOptions.None);
             foreach (string line in lines)
             {
-                WriteIndented(line);
-                _builder.Append("\r\n");
+                WriteIndented(line).WriteLine();
             }
 
+            return this;
+        }
+
+        public IGeneratorWriter WriteLine()
+        {
+            _builder.Append("\r\n");
             return this;
         }
 

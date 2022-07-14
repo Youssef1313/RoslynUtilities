@@ -21,5 +21,6 @@ namespace MS.CA.Utilities.Generators
         IGeneratorWriter WriteIndented(string text);
 
         IGeneratorWriter WriteLinesIndented(string text);
+        IGeneratorWriter WriteLine();
     }
 }
