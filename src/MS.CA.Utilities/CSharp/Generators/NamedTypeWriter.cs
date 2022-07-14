@@ -81,7 +81,7 @@ namespace MS.CA.Utilities.CSharp.Generators
 
         private static bool IsRecord(INamedTypeSymbol namedType)
         {
-#if CODEANALYSIS_3_9_OR_GREATER && false
+#if CODEANALYSIS_3_9_OR_GREATER
             return namedType.IsRecord;
 #else
             // TODO: Fallback to Lightup-based (reflection) IsRecord check?
