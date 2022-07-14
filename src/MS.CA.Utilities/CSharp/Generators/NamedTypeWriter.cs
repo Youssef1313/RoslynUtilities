@@ -87,6 +87,8 @@ namespace MS.CA.Utilities.CSharp.Generators
             // TODO: Fallback to Lightup-based (reflection) IsRecord check?
             // This will be done besides this check, not alone.
             // This is because records were introduced in 3.7, but IsRecord API introduced in 3.9.
+            // Since there is no Lightup (yet) in this project, see:
+            // https://github.com/dotnet/roslyn-analyzers/tree/7caefcebccfa2563ae4f316bd7d350094da4e780/src/Utilities/Compiler/Lightup
             return (namedType.DeclaringSyntaxReferences.Length > 0 && namedType.DeclaringSyntaxReferences[0].GetSyntax().IsKind(SyntaxKindEx.RecordDeclaration, SyntaxKindEx.RecordStructDeclaration)) ||
                 !namedType.GetMembers("<Clone>$").IsEmpty;
 #endif
